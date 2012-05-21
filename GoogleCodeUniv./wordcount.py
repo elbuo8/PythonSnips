@@ -40,13 +40,26 @@ print_words() and print_top().
 import sys
 
 def buildList(filename):
-  return
+  lines = open(filename)
+  dict = {}
+  for line in lines:
+    for words in line.lower().split():
+      if words in dict:
+        dict[words] += 1
+      else:
+        dict[words] = 1
+  return dict
+      
 
 def print_words(filename):
-  return
+  dict = buildList(filename)
+  for key in sorted(dict):
+    print key, dict[key]
 
 def print_top(filename):
-  return
+  dict = buildList(filename)
+  dict = sorted(dict.items(), key = dict[-1], reverse = True)
+  print dict
 # +++your code here+++
 # Define print_words(filename) and print_top(filename) functions.
 # You could write a helper utility function that reads a file
